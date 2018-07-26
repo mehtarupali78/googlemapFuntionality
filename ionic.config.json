@@ -1,0 +1,7 @@
+{
+  "name": "googlemap",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
