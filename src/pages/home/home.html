@@ -6,9 +6,57 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+<ion-content>
+    <ion-card>
+        <ion-card-content>
+            <div></div>
+            <button ion-button full icon-left (click)="startTracking()" *ngIf="!isTracking">
+              <ion-icon name="locate"></ion-icon>
+              Start Tracking
+            </button>
+          <button ion-button full color="danger" icon-left (click)="stopTracking()" *ngIf="isTracking">
+              <ion-icon name="hand"></ion-icon>
+              Stop Tracking
+          </button>
+           <ion-grid>
+            <ion-row>
+              <ion-col>
+                <div> <label>Source Location :</label></div>
+              </ion-col>
+              <ion-col>
+                <div> <input type="text" [readonly]="true" [(ngModel)]="start" placeholder="source Location" ></div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <div><label>Destination Location :</label></div>
+              </ion-col>
+              <ion-col>
+                <div> <input #searchaddress [(ngModel)]="end"  placeholder="destination Location"> </div>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="distance!==undefined || distance!=null ">
+                <ion-col>
+                  <div> <label>Distance :</label></div>
+                </ion-col>
+                <ion-col>
+                  <div>{{distance}}</div>
+                </ion-col>
+              </ion-row>
+              <ion-row *ngIf="distance!==undefined || distance!=null ">
+                <ion-col>
+                  <div><label>Duration/Time :</label></div>
+                </ion-col>
+                <ion-col>
+                  <div>Duration={{duration}}  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+        </ion-card-content>
+        <button ion-button (click)="currentlocation()"><ion-icon name="locate"></ion-icon>Current Location</button>
+        <button ion-button (click)="claculatedirection()">getdirection</button>
+    </ion-card>
+     
+    <div #map id="map"></div> 
 </ion-content>
